@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import time
 import csv
+from datetime import datetime
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"}
 class Scraper():
@@ -21,6 +22,6 @@ class Scraper():
         match = re.search(self.regex, soup.text)
         with open(self.filename, "a+") as f:
             writer = csv.writer(f)
-            writer.writerow([time.time(), self.formatter(match)])
+            writer.writerow([self.formatter(match), self.url, datetime.fromtimestamp(time.time()).strftime("%B %d, %Y"), "false"])
         print("Finished!")
     
