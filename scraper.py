@@ -18,6 +18,7 @@ class Scraper():
         response = requests.get(self.url, headers=HEADERS)
         print("Parsing...")
         soup = BeautifulSoup(response.text, 'html.parser')
+        print(soup.text)
         print("Matching...")
         match = re.search(self.regex, soup.text)
         with open(self.filename, "a+") as f:
